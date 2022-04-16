@@ -7,7 +7,7 @@
 
 .img-comp-container {
   position: relative;
-  height: 1920; /*should be the same height as the images*/
+  height: 100%; /*should be the same height as the images*/
 }
 
 .img-comp-img {
@@ -15,6 +15,14 @@
   width: auto;
   height: auto;
   overflow:hidden;
+  border: 2px solid #969696;
+
+}
+.img-comp-overlay {
+  border-right: 2px solid rgba(51, 51, 51, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .bottomleft {
   position: absolute;
@@ -32,18 +40,17 @@
 }
 .img-comp-img img {
   display:block;
-  vertical-align:middle;
 }
 
 .img-comp-slider {
-  position: absolute;
+  position: relative;
   z-index:9;
   cursor: ew-resize;
   /*set the appearance of the slider:*/
   width: 40px;
   height: 40px;
-  background-color: #2196F3;
-  opacity: 0.7;
+  background-color: #ff0000;
+  opacity: 50%;
   border-radius: 50%;
 }
 </style>
@@ -129,15 +136,15 @@ function initComparisons() {
 <body>
 
 <h1>Compare Two Images</h1>
+<input name="before" class="bottomright" type="file" accept="image/*" onchange="document.getElementById('before').src = window.URL.createObjectURL(this.files[0])">
+<input name="after" class="bottomleft" type="file" accept="image/*" onchange="document.getElementById('after').src = window.URL.createObjectURL(this.files[0])">
 
 <div class="img-comp-container">
   <div class="img-comp-img">
-    <img id=before src="" width="1920px%">
-    <input name="before" class="bottomright" type="file" accept="image/*" onchange="document.getElementById('before').src = window.URL.createObjectURL(this.files[0])">
+    <img id="before" src="" width="1920px">
   </div>
   <div class="img-comp-img img-comp-overlay">
-    <img id=after src="" width="1920px">
-    <input name="after" class="bottomleft" type="file" accept="image/*" onchange="document.getElementById('after').src = window.URL.createObjectURL(this.files[0])">
+    <img id="after" src="" width="1920px">
   </div>
 </div>
 <script>
